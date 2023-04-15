@@ -14,9 +14,9 @@ Choose the file "Buttsbot in Firebot.firebotsetup" from the location you just do
 + Chat user can not be a known bot or the streamer.
 
 ## Commands for Chat
-+ yes - responds with *
-+ no - responds with *
-+ maybe - responds with *
++ yes - responds with :-)
++ no - responds with :-(
++ maybe - responds with :\
 
 ## Commands for Streamer
 + setword - allows streamer to manually set the buttified word
