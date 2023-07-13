@@ -1,7 +1,7 @@
 {
-  "name": "Buttsbot",
+  "name": "Buttsbot in Firebot",
   "description": "buttify chat",
-  "version": 1,
+  "version": 2,
   "author": "arblane",
   "components": {
     "commands": [
@@ -46,7 +46,7 @@
                   "id": "95883b00-d177-11ed-9eb8-8b0137e9fd32",
                   "type": "firebot:chat",
                   "active": true,
-                  "chatter": "Streamer",
+                  "chatter": "Bot",
                   "message": ":-)"
                 }
               ],
@@ -74,7 +74,7 @@
                   "id": "d8e149f0-d177-11ed-9eb8-8b0137e9fd32",
                   "type": "firebot:chat",
                   "active": true,
-                  "chatter": "Streamer",
+                  "chatter": "Bot",
                   "message": ":-("
                 }
               ],
@@ -102,7 +102,7 @@
                   "id": "0bc84b70-d178-11ed-9eb8-8b0137e9fd32",
                   "type": "firebot:chat",
                   "active": true,
-                  "chatter": "Streamer",
+                  "chatter": "Bot",
                   "message": ":\\"
                 }
               ],
@@ -189,16 +189,119 @@
             },
             "description": "reset buttsbot word to default",
             "hidden": true
+          },
+          {
+            "active": true,
+            "id": "3b4ad4ee-eeff-4fe1-b274-f49dbaeb23b0",
+            "type": "Custom",
+            "arg": "allow",
+            "regex": false,
+            "fallback": false,
+            "restrictionData": {
+              "restrictions": [],
+              "mode": "all",
+              "sendFailMessage": true,
+              "useCustomFailMessage": false,
+              "failMessage": "Sorry, you cannot use this command because: {reason}"
+            },
+            "effects": {
+              "list": [
+                {
+                  "id": "42a6c680-06d9-11ee-86fa-c1a4400e49dd",
+                  "type": "firebot:set-user-metadata",
+                  "active": true,
+                  "key": "allowButtsbot",
+                  "username": "$user",
+                  "data": "allow",
+                  "effectLabel": "allow buttsbot"
+                },
+                {
+                  "id": "1b1fd4a0-0c72-11ee-bced-71a2078aa9cb",
+                  "type": "firebot:chat",
+                  "active": true,
+                  "chatter": "Bot",
+                  "message": "$username you have successfully allowed buttsbot to respond to your messages!"
+                }
+              ],
+              "id": "2502e280-06d9-11ee-86fa-c1a4400e49dd"
+            },
+            "description": "Allow buttsbot to respond to your messages"
+          },
+          {
+            "active": true,
+            "id": "ff5a8cb3-0670-453e-9855-bb43b6ae0a85",
+            "type": "Custom",
+            "arg": "prevent",
+            "regex": false,
+            "fallback": false,
+            "restrictionData": {
+              "restrictions": [],
+              "mode": "all",
+              "sendFailMessage": true,
+              "useCustomFailMessage": false,
+              "failMessage": "Sorry, you cannot use this command because: {reason}"
+            },
+            "effects": {
+              "list": [
+                {
+                  "id": "c2ece900-06d9-11ee-86fa-c1a4400e49dd",
+                  "type": "firebot:set-user-metadata",
+                  "active": true,
+                  "key": "allowButtsbot",
+                  "username": "$user",
+                  "data": "prevent",
+                  "effectLabel": "prevent buttsbot"
+                },
+                {
+                  "id": "01e5da70-0c72-11ee-bced-71a2078aa9cb",
+                  "type": "firebot:chat",
+                  "active": true,
+                  "chatter": "Bot",
+                  "message": "$username you have successfully prevented buttsbot from responding to your messages!"
+                }
+              ],
+              "id": "a2d6cc80-06d9-11ee-86fa-c1a4400e49dd"
+            },
+            "description": "Prevent buttsbot from responding to your messages"
           }
         ],
         "id": "9cb0f6b0-d177-11ed-9eb8-8b0137e9fd32",
         "createdBy": "arblane",
         "createdAt": "2023-04-02T12:58:37-04:00",
-        "count": 10,
+        "count": 21,
         "lastEditBy": "arblane",
-        "lastEditAt": "2023-04-19T20:17:23-04:00",
+        "lastEditAt": "2023-06-16T14:20:47-04:00",
         "description": "buttsbot triggers and responses",
-        "ignoreBot": true
+        "ignoreBot": true,
+        "fallbackSubcommand": {
+          "active": true,
+          "id": "fallback-subcommand",
+          "type": "Fallback",
+          "arg": ".+",
+          "regex": true,
+          "usage": "[anything]",
+          "fallback": true,
+          "restrictionData": {
+            "restrictions": [],
+            "mode": "all",
+            "sendFailMessage": true,
+            "useCustomFailMessage": false,
+            "failMessage": "Sorry, you cannot use this command because: {reason}"
+          },
+          "effects": {
+            "list": [
+              {
+                "id": "30a77530-0c72-11ee-bced-71a2078aa9cb",
+                "type": "firebot:chat",
+                "active": true,
+                "chatter": "Bot",
+                "message": "$username you have attempted to make buttsbot divide by zero, please check your argument and try again"
+              }
+            ],
+            "id": "e66e4c50-0c71-11ee-bced-71a2078aa9cb"
+          },
+          "description": "buttsbot fallback"
+        }
       }
     ],
     "counters": [],
@@ -256,6 +359,13 @@
                                   "type": "firebot:username",
                                   "comparisonType": "is not",
                                   "rightSideValue": "$bot"
+                                },
+                                {
+                                  "type": "firebot:custom",
+                                  "comparisonType": "is",
+                                  "value": null,
+                                  "leftSideValue": "$userMetadata[$user, allowButtsbot]",
+                                  "rightSideValue": "allow"
                                 }
                               ]
                             },
@@ -643,6 +753,32 @@
           ]
         },
         "id": "ed975060-d17c-11ed-9eb8-8b0137e9fd32"
+      },
+      {
+        "name": "Reset Buttsbot",
+        "active": true,
+        "cached": true,
+        "sortTags": [],
+        "eventId": "stream-started",
+        "sourceId": "ebiggz-obs-control",
+        "effects": {
+          "list": [
+            {
+              "id": "ed12c2c0-fe4d-11ed-8872-df9635dfdd9a",
+              "type": "firebot:runcommand",
+              "active": true,
+              "commandType": "custom",
+              "commandId": "9cb0f6b0-d177-11ed-9eb8-8b0137e9fd32",
+              "args": "reset"
+            }
+          ],
+          "id": "e4a8d480-fe4d-11ed-8872-df9635dfdd9a"
+        },
+        "filterData": {
+          "mode": "exclusive",
+          "filters": []
+        },
+        "id": "f1cdd9d0-fe4d-11ed-8872-df9635dfdd9a"
       }
     ],
     "eventGroups": [],
