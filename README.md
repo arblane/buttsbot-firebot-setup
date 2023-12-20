@@ -2,7 +2,7 @@
 Firebot setup to buttify chat messages. Modifed morningstargg's version to add in a Channel Point redemption to change the word for the current stream and responses.
 
 # Compatibility
- + Firebot 5.59.2+
+ + Firebot 5.58.0+
 
 # Install
 + Download 
