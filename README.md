@@ -18,11 +18,11 @@ Firebot setup to buttify chat messages. Modifed MorningStarGG's version to add i
 + Chat user can not be a known bot or the streamer.
 
 ## Commands for Chat
-+ yes - responds with :-)
-+ no - responds with :-(
-+ maybe - responds with :\
-+ allow - opt-in to allow buttsbot to respond to your messages
-+ prevent - opt-out to prevent buttsbot from responding to your messages
++ buttsbot yes - responds with :-)
++ buttsbot no - responds with :-(
++ buttsbot maybe - responds with :\
++ buttsbot allow - opt-in to allow buttsbot to respond to your messages
++ buttsbot prevent - opt-out to prevent buttsbot from responding to your messages
 
 ## Commands for Streamer
 + setword - allows streamer to manually set the buttified word
