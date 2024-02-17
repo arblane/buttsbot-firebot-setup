@@ -1,7 +1,7 @@
 {
   "name": "Buttsbot in Firebot",
-  "description": "buttify chat",
-  "version": 2,
+  "description": "Randomly replaces words in messages with the word \\\"BUTT\\\" (or Streamer allowed replacement). Inspired by Buttsbot. Updated for Firebot 5.61. Adapted from MorningStarGG's setup.",
+  "version": 2.1,
   "author": "arblane",
   "components": {
     "commands": [
@@ -183,6 +183,13 @@
                   "ttl": 0,
                   "name": "buttsbotWord",
                   "variableData": "BUTT"
+                },
+                {
+                  "id": "68520820-271f-11ee-9bbc-e19a5404be33",
+                  "type": "firebot:chat",
+                  "active": true,
+                  "chatter": "Bot",
+                  "message": "buttsbot reset!"
                 }
               ],
               "id": "b52e93d0-d179-11ed-9eb8-8b0137e9fd32"
@@ -268,9 +275,9 @@
         "id": "9cb0f6b0-d177-11ed-9eb8-8b0137e9fd32",
         "createdBy": "arblane",
         "createdAt": "2023-04-02T12:58:37-04:00",
-        "count": 21,
+        "count": 27,
         "lastEditBy": "arblane",
-        "lastEditAt": "2023-06-16T14:20:47-04:00",
+        "lastEditAt": "2023-07-20T13:04:02-04:00",
         "description": "buttsbot triggers and responses",
         "ignoreBot": true,
         "fallbackSubcommand": {
@@ -301,7 +308,8 @@
             "id": "e66e4c50-0c71-11ee-bced-71a2078aa9cb"
           },
           "description": "buttsbot fallback"
-        }
+        },
+        "type": "custom"
       }
     ],
     "counters": [],
@@ -420,7 +428,7 @@
                                                   "active": true,
                                                   "ttl": 0,
                                                   "name": "outputMessage",
-                                                  "variableData": "$customVariable[outputMessage] $replace[$concat[$customVariable[arrayMessage, $loopCount], \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]"
+                                                  "variableData": "$customVariable[outputMessage] $replace[$concat[$loopItem, \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]"
                                                 }
                                               ],
                                               "id": "e9be4b60-5a1c-11ed-b621-4584d74d58c9"
@@ -485,7 +493,7 @@
                                                         "active": true,
                                                         "ttl": 0,
                                                         "name": "arrayMessage",
-                                                        "variableData": "$replace[$concat[$customVariable[arrayMessage, $loopCount], \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
+                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
                                                         "propertyPath": "$loopCount"
                                                       }
                                                     ],
@@ -520,7 +528,7 @@
                                                   "active": true,
                                                   "ttl": 0,
                                                   "name": "outputMessage",
-                                                  "variableData": "$customVariable[outputMessage] $customVariable[arrayMessage, $loopCount]"
+                                                  "variableData": "$customVariable[outputMessage] $loopItem"
                                                 }
                                               ],
                                               "id": "60da8a00-5a28-11ed-8122-7bf7eb881f3e"
@@ -541,7 +549,8 @@
                                           }
                                         ],
                                         "id": "e0bc5420-5a22-11ed-b621-4584d74d58c9"
-                                      }
+                                      },
+                                      "label": "if equal or less than 10 words"
                                     },
                                     {
                                       "conditionData": {
@@ -584,7 +593,7 @@
                                                         "active": true,
                                                         "ttl": 0,
                                                         "name": "arrayMessage",
-                                                        "variableData": "$replace[$concat[$customVariable[arrayMessage, $loopCount], \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
+                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
                                                         "propertyPath": "$loopCount"
                                                       }
                                                     ],
@@ -619,7 +628,7 @@
                                                   "active": true,
                                                   "ttl": 0,
                                                   "name": "outputMessage",
-                                                  "variableData": "$customVariable[outputMessage] $customVariable[arrayMessage, $loopCount]"
+                                                  "variableData": "$customVariable[outputMessage] $loopItem"
                                                 }
                                               ],
                                               "id": "60da8a00-5a28-11ed-8122-7bf7eb881f3e"
@@ -640,7 +649,8 @@
                                           }
                                         ],
                                         "id": "36b3bad0-5a2d-11ed-8122-7bf7eb881f3e"
-                                      }
+                                      },
+                                      "label": "If equal or less than 15 words"
                                     }
                                   ],
                                   "otherwiseEffectData": {
@@ -724,7 +734,7 @@
       },
       {
         "name": "Change Buttsbot Word",
-        "active": true,
+        "active": false,
         "cached": true,
         "sortTags": [],
         "eventId": "channel-reward-redemption",
@@ -738,6 +748,14 @@
               "ttl": 0,
               "name": "buttsbotWord",
               "variableData": "$rewardMessage"
+            },
+            {
+              "id": "934e0780-2fb3-11ee-84d6-11f939a331b1",
+              "type": "firebot:announcement",
+              "active": true,
+              "color": "Purple",
+              "chatter": "Bot",
+              "message": "buttsbot's word has been set!"
             }
           ],
           "id": "e2fe2610-d17c-11ed-9eb8-8b0137e9fd32"

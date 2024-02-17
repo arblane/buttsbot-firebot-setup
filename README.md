@@ -1,8 +1,9 @@
 # buttsbot-firebot-setup
-Firebot setup to buttify chat messages. Modifed morningstargg's version to add in a Channel Point redemption to change the word for the current stream and responses.
+Firebot setup to buttify chat messages. Modifed MorningStarGG's version to add in a Channel Point redemption to change the word for the current stream and responses.
 
 # Compatibility
- + Firebot 5.58.0+
+ + Firebot 5.61.1+
+   + Will not work in lower versions of Firebot
 
 # Install
 + Download 
@@ -33,4 +34,4 @@ Firebot setup to buttify chat messages. Modifed morningstargg's version to add i
 + Choose which emoji or emotes you would like buttsbot to respond to the yes/no/maybe commands.
 
 # Credits
-Modeled after a setup posted by morningstargg.
+Adapted from a setup posted by MorningStarGG.
