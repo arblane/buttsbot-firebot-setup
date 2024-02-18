@@ -1,7 +1,7 @@
 {
   "name": "Buttsbot in Firebot",
   "description": "Randomly replaces words in messages with the word \\\"BUTT\\\" (or Streamer allowed replacement). Inspired by Buttsbot. Updated for Firebot 5.61. Adapted from MorningStarGG's setup.",
-  "version": 2.1,
+  "version": 2.2,
   "author": "arblane",
   "components": {
     "commands": [
@@ -331,7 +331,7 @@
               "active": true,
               "ttl": 0,
               "name": "messageCount",
-              "variableData": "$math[$customVariable[messageCount] + 1]",
+              "variableData": "$math[$$messageCount + 1]",
               "effectLabel": "Message Count"
             },
             {
@@ -347,7 +347,7 @@
                         "type": "firebot:custom",
                         "comparisonType": "is greater than or equal to",
                         "value": null,
-                        "leftSideValue": "$customVariable[messageCount]",
+                        "leftSideValue": "$$messageCount",
                         "rightSideValue": "5"
                       }
                     ]
@@ -401,7 +401,7 @@
                                             "type": "firebot:custom",
                                             "comparisonType": "is less than or equal to",
                                             "value": null,
-                                            "leftSideValue": "$arrayLength[$customVariable[arrayMessage]]",
+                                            "leftSideValue": "$arrayLength[$$arrayMessage]",
                                             "rightSideValue": "5"
                                           }
                                         ]
@@ -414,7 +414,7 @@
                                             "active": true,
                                             "ttl": 0,
                                             "name": "wordToReplace",
-                                            "variableData": "$concat[$arrayElement[$customVariable[arrayMessage], $randomNumber[0, $math[$arrayLength[$customVariable[arrayMessage]] - 1]]], \" \"]"
+                                            "variableData": "$concat[$arrayElement[$$arrayMessage, $randomNumber[0, $math[$arrayLength[$$arrayMessage] - 1]]], \" \"]"
                                           },
                                           {
                                             "id": "e9b2d9b0-5a1c-11ed-b621-4584d74d58c9",
@@ -439,13 +439,6 @@
                                               "conditions": []
                                             },
                                             "arrayToIterate": "$customVariable[arrayMessage]"
-                                          },
-                                          {
-                                            "id": "1fda43b0-5a1e-11ed-b621-4584d74d58c9",
-                                            "type": "firebot:chat",
-                                            "active": true,
-                                            "chatter": "Bot",
-                                            "message": "$customVariable[outputMessage]"
                                           }
                                         ],
                                         "id": "bd7d8490-5a1b-11ed-b621-4584d74d58c9"
@@ -460,7 +453,7 @@
                                             "type": "firebot:custom",
                                             "comparisonType": "is less than or equal to",
                                             "value": null,
-                                            "leftSideValue": "$arrayLength[$customVariable[arrayMessage]]",
+                                            "leftSideValue": "$arrayLength[$$arrayMessage]",
                                             "rightSideValue": "10"
                                           }
                                         ]
@@ -479,7 +472,7 @@
                                                   "active": true,
                                                   "ttl": 0.5,
                                                   "name": "wordToReplace",
-                                                  "variableData": "$concat[$arrayElement[$customVariable[arrayMessage], $randomNumber[0, $math[$arrayLength[$customVariable[arrayMessage]] - 1]]], \" \"]"
+                                                  "variableData": "$concat[$arrayElement[$$arrayMessage, $randomNumber[0, $math[$arrayLength[$$arrayMessage] - 1]]], \" \"]"
                                                 },
                                                 {
                                                   "id": "39bc4b71-5a23-11ed-b621-4584d74d58c9",
@@ -493,7 +486,7 @@
                                                         "active": true,
                                                         "ttl": 0,
                                                         "name": "arrayMessage",
-                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
+                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $$wordToReplace, $$buttsbotWord]",
                                                         "propertyPath": "$loopCount"
                                                       }
                                                     ],
@@ -504,7 +497,7 @@
                                                     "mode": "exclusive",
                                                     "conditions": []
                                                   },
-                                                  "arrayToIterate": "$customVariable[arrayMessage]"
+                                                  "arrayToIterate": "$$arrayMessage"
                                                 }
                                               ],
                                               "id": "3509bfe0-5a23-11ed-b621-4584d74d58c9"
@@ -528,7 +521,7 @@
                                                   "active": true,
                                                   "ttl": 0,
                                                   "name": "outputMessage",
-                                                  "variableData": "$customVariable[outputMessage] $loopItem"
+                                                  "variableData": "$$outputMessage $loopItem"
                                                 }
                                               ],
                                               "id": "60da8a00-5a28-11ed-8122-7bf7eb881f3e"
@@ -538,14 +531,7 @@
                                               "mode": "exclusive",
                                               "conditions": []
                                             },
-                                            "arrayToIterate": "$customVariable[arrayMessage]"
-                                          },
-                                          {
-                                            "id": "3beea8e2-5a30-11ed-8122-7bf7eb881f3e",
-                                            "type": "firebot:chat",
-                                            "active": true,
-                                            "chatter": "Bot",
-                                            "message": "$customVariable[outputMessage]"
+                                            "arrayToIterate": "$$arrayMessage"
                                           }
                                         ],
                                         "id": "e0bc5420-5a22-11ed-b621-4584d74d58c9"
@@ -560,7 +546,7 @@
                                             "type": "firebot:custom",
                                             "comparisonType": "is greater than or equal to",
                                             "value": null,
-                                            "leftSideValue": "$arrayLength[$customVariable[arrayMessage]]",
+                                            "leftSideValue": "$arrayLength[$$arrayMessage]",
                                             "rightSideValue": "15"
                                           }
                                         ]
@@ -579,7 +565,7 @@
                                                   "active": true,
                                                   "ttl": 0.5,
                                                   "name": "wordToReplace",
-                                                  "variableData": "$concat[$arrayElement[$customVariable[arrayMessage], $randomNumber[0, $math[$arrayLength[$customVariable[arrayMessage]] - 1]]], \" \"]"
+                                                  "variableData": "$concat[$arrayElement[$$arrayMessage, $randomNumber[0, $math[$arrayLength[$$arrayMessage] - 1]]], \" \"]"
                                                 },
                                                 {
                                                   "id": "39bc4b71-5a23-11ed-b621-4584d74d58c9",
@@ -593,7 +579,7 @@
                                                         "active": true,
                                                         "ttl": 0,
                                                         "name": "arrayMessage",
-                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $customVariable[wordToReplace], $customVariable[buttsbotWord]]",
+                                                        "variableData": "$replace[$concat[$loopItem, \" \"], $$wordToReplace, $$buttsbotWord]",
                                                         "propertyPath": "$loopCount"
                                                       }
                                                     ],
@@ -604,7 +590,7 @@
                                                     "mode": "exclusive",
                                                     "conditions": []
                                                   },
-                                                  "arrayToIterate": "$customVariable[arrayMessage]"
+                                                  "arrayToIterate": "$$arrayMessage"
                                                 }
                                               ],
                                               "id": "3509bfe0-5a23-11ed-b621-4584d74d58c9"
@@ -639,13 +625,6 @@
                                               "conditions": []
                                             },
                                             "arrayToIterate": "$customVariable[arrayMessage]"
-                                          },
-                                          {
-                                            "id": "38ad40e2-5a2d-11ed-8122-7bf7eb881f3e",
-                                            "type": "firebot:chat",
-                                            "active": true,
-                                            "chatter": "Bot",
-                                            "message": "$customVariable[outputMessage]"
                                           }
                                         ],
                                         "id": "36b3bad0-5a2d-11ed-8122-7bf7eb881f3e"
@@ -658,6 +637,13 @@
                                     "id": "bd7b3aa0-5a1b-11ed-b621-4584d74d58c9"
                                   },
                                   "effectLabel": "Main loop"
+                                },
+                                {
+                                  "id": "78ef7bf0-ce8f-11ee-8ff8-1fd9288b7b06",
+                                  "type": "firebot:chat",
+                                  "active": true,
+                                  "chatter": "Bot",
+                                  "message": "$$outputMessage"
                                 },
                                 {
                                   "id": "191117b0-5a1f-11ed-b621-4584d74d58c9",
